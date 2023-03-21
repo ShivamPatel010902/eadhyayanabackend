@@ -10,6 +10,13 @@ app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
 app.use(fileUpoad({ useTempFiles: true }));
+const dotenv = require("dotenv");
+dotenv.config();
+
+const {
+  MONGODB_URL
+} = process.env;
+
 
 //Routes
 app.use("/user", require("./routes/userRouter"));
@@ -42,7 +49,7 @@ if (process.env.NODE_ENV === "production") {
 
 const PORT = process.env.PORT || 4000;
 
-const CONNECTION_URL =""
+const CONNECTION_URL =MONGODB_URL
 
 
 mongoose
